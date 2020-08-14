@@ -1,7 +1,7 @@
 import http.cookiejar, urllib.request, json, os
 
 # CONSTANTS
-emailAddress = os.environ.get('OUR_GROCERIES_EMAIL','me@example.com')
+emailAddress = os.environ.get('OUR_GROCERIES_EMAIL', 'me@example.com')
 password = os.environ.get('OUR_GROCERIES_PASSWORD', 'super.duper.secret')
 teamId = os.environ.get('OUR_GROCERIES_TEAM_ID', 'ekdie123Gave9483pameny')
 signInUrl = 'https://www.ourgroceries.com/sign-in'
@@ -17,8 +17,8 @@ def login(opener):
 
 def getRecipes(opener):
   request = getJsonRequest(recipeUrl, {'command': 'getOverview',  'teamId': teamId})
-  response = opener.open(request)
-  return readJsonResponse(response)
+  response = readJsonResponse(opener.open(request))
+  return json.dumps(response)
 
 def getJsonRequest(url, data):
   body = json.dumps(data).encode('utf8')
@@ -26,7 +26,7 @@ def getJsonRequest(url, data):
   return urllib.request.Request(recipeUrl, body, headers)
 
 def readJsonResponse(jsonResponse):
-  return json.dumps(json.loads(jsonResponse.read()))
+  return json.loads(jsonResponse.read())
 
 def lambda_handler(event, context):
     opener = createOpener()
@@ -40,4 +40,5 @@ def lambda_handler(event, context):
         'body': getRecipes(opener)
     }
 
-# print(lambda_handler(None, None))
+
+print(lambda_handler(None, None))

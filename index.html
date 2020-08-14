@@ -45,7 +45,7 @@
         var recipes = JSON.parse(this.responseText)["recipes"];
         recipes.sort((a, b) => 0.5 - Math.random());
         var selected = recipes.filter((value, index, array) => index < 10);
-        var recipeNames = selected.map((recipe) => "<li>"+recipe.name+"</li>");
+        var recipeNames = selected.map((recipe) => "<li><a href='https://www.ourgroceries.com/your-lists/list/"+recipe.id+"' target='_blank'>"+recipe.name+"</a></li>");
         document.getElementById("content").innerHTML = recipeNames.join("\n");
       }
     };

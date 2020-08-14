@@ -43,8 +43,16 @@ nav a {
     border: 1px solid white;
 }
 
-nav a:hover {
+a {
+    text-decoration: none;
+    color: #60c0ff;
+}
+
+a:hover {
     text-decoration: underline;
+}
+
+nav a:hover {
     background-color: #000000;
 }
 
