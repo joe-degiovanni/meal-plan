@@ -26,7 +26,7 @@ def getJsonRequest(url, data):
   return urllib.request.Request(recipeUrl, body, headers)
 
 def readJsonResponse(jsonResponse):
-  return json.loads(jsonResponse.read())
+  return json.dumps(json.loads(jsonResponse.read()))
 
 def lambda_handler(event, context):
     opener = createOpener()
@@ -40,6 +40,4 @@ def lambda_handler(event, context):
         'body': getRecipes(opener)
     }
 
-# Run program
-response = lambda_handler(None, None)
-print(response)
+# print(lambda_handler(None, None))
