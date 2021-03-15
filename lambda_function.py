@@ -35,7 +35,7 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'headers': {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': 'https://joedegiovanni.info'
         },
         'body': getRecipes(opener)
     }
